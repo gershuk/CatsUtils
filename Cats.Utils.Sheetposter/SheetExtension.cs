@@ -1,20 +1,22 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
-using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Sheets.v4;
+using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Util.Store;
+
 using System.Text.Json.Nodes;
 
 namespace Cats.Utils.Sheetposter.Extension;
 
 public static partial class SheetExtension
 {
-    static readonly string[] _scopes = { SheetsService.Scope.Spreadsheets, SheetsService.Scope.Drive };
-    static readonly string _appName = "Cats Sheetposter";
-    static readonly string _credPath = "token.json";
-    static readonly string _appKeysPath = "appKeys.json";
+    private static readonly string[] _scopes = { SheetsService.Scope.Spreadsheets, SheetsService.Scope.Drive };
+    private static readonly string _appName = "Cats Sheetposter";
+    private static readonly string _credPath = "token.json";
+    private static readonly string _appKeysPath = "appKeys.json";
 
     public static CellData Get(this Sheet sheet, int width, int height) => sheet.Data[0].RowData[height].Values[width];
+
     public static void Set(this Sheet sheet, int width, int height, ExtendedValue value) =>
         sheet.Data[0].RowData[height].Values[width].UserEnteredValue = value;
 
@@ -34,7 +36,7 @@ public static partial class SheetExtension
 
     public static async Task<Spreadsheet> PostToGoogleDocs(string name, params Sheet[] sheets)
     {
-        using FileStream stream = File.OpenRead(_appKeysPath);
+        using var stream = File.OpenRead(_appKeysPath);
 
         var service = new SheetsService(new BaseClientService.Initializer()
         {

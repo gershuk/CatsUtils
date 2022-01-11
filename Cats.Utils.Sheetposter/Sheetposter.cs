@@ -5,7 +5,7 @@ namespace Cats.Utils.Sheetposter;
 
 public class Sheetposter
 {
-    public async static Task Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var cid = args.Length >= 1 ? Convert.ToInt32(args[0]) : throw new ArgumentException("Wrong arguments count");
         var name = args.Length == 2 ? args[1] : "Table";
