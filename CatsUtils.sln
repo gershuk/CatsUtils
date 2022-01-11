@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cats.Utils.Sheetposter", "Cats.Utils.Sheetposter\Cats.Utils.Sheetposter.csproj", "{BB1BD966-84D6-4725-9BB5-6DDB43C275CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cats.Utils.Api", "Cats.Utils.Api\Cats.Utils.Api.csproj", "{29E47D87-0C02-4F44-9AD9-D482F60FB2E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB1BD966-84D6-4725-9BB5-6DDB43C275CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1BD966-84D6-4725-9BB5-6DDB43C275CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1BD966-84D6-4725-9BB5-6DDB43C275CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1BD966-84D6-4725-9BB5-6DDB43C275CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E47D87-0C02-4F44-9AD9-D482F60FB2E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E47D87-0C02-4F44-9AD9-D482F60FB2E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E47D87-0C02-4F44-9AD9-D482F60FB2E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E47D87-0C02-4F44-9AD9-D482F60FB2E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DA34029-F42A-45B4-9796-D500596CB7E4}
+	EndGlobalSection
+EndGlobal

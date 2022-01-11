@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "GoogleDocTest": {
+      "commandName": "Project"
+    },
+    "Тестирование": {
+      "commandName": "Project",
+      "commandLineArgs": "5504336 TestTable"
+    }
+  }
+}
