@@ -5,7 +5,7 @@
     },
     "Тестирование": {
       "commandName": "Project",
-      "commandLineArgs": "5504336 TestTable"
+      "commandLineArgs": "postCatsTable -c:5504336 -n:BDSM -f:true"
     }
   }
 }

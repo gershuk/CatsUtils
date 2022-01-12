@@ -29,44 +29,47 @@ public static partial class SheetExtension
         return new() { Data = new List<GridData>() { new GridData() { RowData = rowData } } };
     }
 
-    public static async Task<Sheet> CreateCatsTable(int cid)
+    public static async Task<Sheet> CreateCatsTable(int cid, bool isFull = true)
     {
         using var apiCaller = new ApiCaller();
         var table = await apiCaller.GetContestTable(cid) ?? throw new NullReferenceException();
         var problemIds = (JsonArray)(table["problem_ids"] ?? throw new NullReferenceException());
         var ranks = (JsonArray)(table["ranks"] ?? throw new NullReferenceException());
-        var width = problemIds.Count + 2;
+        var width = isFull ? problemIds.Count + 2 : 2;
         var height = ranks.Count + 2;
         var sheet = Create(width, height);
 
         sheet.Set(0, 0, new() { StringValue = "Имя" });
-        for (var i = 0; i < problemIds.Count; ++i)
+        sheet.Set(isFull ? problemIds.Count + 1 : 1, 0, new() { StringValue = "Результат" });
+
+        if (isFull)
         {
-            var pid = problemIds[i][0].ToString();
-            var taskNode = (await apiCaller.GetTaskProblemInfo(cid, Convert.ToInt32(pid)))[0];
-            sheet.Set(i + 1, 0, new()
+            for (var i = 0; i < problemIds.Count; ++i)
             {
-                FormulaValue = MakeHyperLink($"https://imcs.dvfu.ru/cats/?f=problem_text;cid={cid};pid={pid};",
-                                            taskNode["title"].ToString())
-            });
+                var pid = problemIds[i][0].ToString();
+                var taskNode = (await apiCaller.GetTaskProblemInfo(cid, Convert.ToInt32(pid)));
+                if (((JsonArray)taskNode).Count == 0)
+                    continue;
+                taskNode = taskNode[0];
+                sheet.Set(i + 1, 0, new()
+                {
+                    FormulaValue = MakeHyperLink($"https://imcs.dvfu.ru/cats/?f=problem_text;cid={cid};pid={pid};",
+                                                taskNode["title"].ToString())
+                });
+            }
         }
-        sheet.Set(problemIds.Count + 1, 0, new() { StringValue = "Результат" });
 
         for (var i = 0; i < ranks.Count; ++i)
         {
+            var pt = (JsonArray)ranks[i]["pt"] ?? (JsonArray)ranks[i]["td"] ?? throw new NullReferenceException();
             sheet.Set(0, i + 1, new() { StringValue = ranks[i]["n"].ToString() });
-            var pt = (JsonArray)ranks[i]["pt"];
-            for (var j = 0; j < pt.Count; ++j)
+            sheet.Set(isFull ? pt.Count + 1 : 1, i + 1, new() { StringValue = (ranks[i]["tp"] ?? ranks[i]["ts"]).ToString() });
+
+            if (isFull)
             {
-                sheet.Set(j + 1, i + 1, new()
-                {
-                    StringValue = pt[j].ToString(),
-                });
+                for (var j = 0; j < pt.Count; ++j)
+                    sheet.Set(j + 1, i + 1, new() { StringValue = pt[j].ToString() });
             }
-            sheet.Set(pt.Count + 1, i + 1, new()
-            {
-                StringValue = ranks[i]["tp"].ToString(),
-            });
         }
 
         return sheet;
