@@ -1,0 +1,104 @@
+﻿{
+  "Documents": [
+    {
+      "Format": "HTML",
+      "Mime": "text/html"
+    },
+    {
+      "Format": "HTML (zipped)",
+      "Mime": "application/zip"
+    },
+    {
+      "Format": "Plain text",
+      "Mime": "text/plain"
+    },
+    {
+      "Format": "Rich text",
+      "Mime": "application/rtf"
+    },
+    {
+      "Format": "Open Office doc",
+      "Mime": "application/vnd.oasis.opendocument.text"
+    },
+    {
+      "Format": "PDF",
+      "Mime": "application/pdf"
+    },
+    {
+      "Format": "MS Word document",
+      "Mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    },
+    {
+      "Format": "EPUB",
+      "Mime": "application/epub+zip"
+    }
+  ],
+  "Spreadsheets": [
+    {
+      "Format": "MS Excel",
+      "Mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    },
+    {
+      "Format": "Open Office sheet",
+      "Mime": "application/x-vnd.oasis.opendocument.spreadsheet"
+    },
+    {
+      "Format": "PDF",
+      "Mime": "application/pdf"
+    },
+    {
+      "Format": "CSV (first sheet only)",
+      "Mime": "text/csv"
+    },
+    {
+      "Format": "(sheet only)",
+      "Mime": "text/tab-separated-values"
+    },
+    {
+      "Format": "HTML (zipped)",
+      "Mime": "application/zip"
+    }
+  ],
+  "Drawings": [
+    {
+      "Format": "JPEG",
+      "Mime": "image/jpeg"
+    },
+    {
+      "Format": "PNG",
+      "Mime": "image/png"
+    },
+    {
+      "Format": "SVG",
+      "Mime": "image/svg+xml"
+    },
+    {
+      "Format": "PDF",
+      "Mime": "application/pdf"
+    }
+  ],
+  "Presentations": [
+    {
+      "Format": "MS PowerPoint",
+      "Mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    },
+    {
+      "Format": "Open Office presentation",
+      "Mime": "application/vnd.oasis.opendocument.presentation"
+    },
+    {
+      "Format": "PDF",
+      "Mime": "application/pdf"
+    },
+    {
+      "Format": "Plain text",
+      "Mime": "text/plain"
+    }
+  ],
+  "AppsScripts": [
+    {
+      "Format": "JSON",
+      "Mime": "application/vnd.google-apps.script+json"
+    }
+  ]
+}

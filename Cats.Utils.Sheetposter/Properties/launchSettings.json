@@ -2,10 +2,6 @@
   "profiles": {
     "GoogleDocTest": {
       "commandName": "Project"
-    },
-    "Тестирование": {
-      "commandName": "Project",
-      "commandLineArgs": "postCatsTable -c:5504336 -n:BDSM -f:true"
     }
   }
 }

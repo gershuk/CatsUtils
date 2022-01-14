@@ -9,7 +9,18 @@ namespace Cats.Utils.Sheetposter
         public static async Task Main(string[] args)
         {
             var rootCommand = new RootCommand();
-            rootCommand.Add(MakePostCatsTableCommand());
+            var commandMakerList = new Func<Command>[]
+            {
+                MakePostCatsTableToSheetsCommand,
+                MakeGetFilesListCommand,
+                MakeDeleteFileCommand,
+                MakeTrashFileCommand,
+                MakeUntrashFileCommand,
+                MakeExportFildCommand,
+            };
+
+            foreach (var commandMaker in commandMakerList)
+                rootCommand.Add(commandMaker());
             await rootCommand.InvokeAsync(args);
         }
     }

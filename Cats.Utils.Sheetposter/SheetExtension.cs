@@ -1,10 +1,6 @@
 ﻿using Cats.Utils.Api;
 
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
-using Google.Apis.Util.Store;
 
 using System.Text.Json.Nodes;
 
@@ -12,11 +8,6 @@ namespace Cats.Utils.Sheetposter.Extension;
 
 public static partial class SheetExtension
 {
-    private static readonly string _appKeysPath = "appKeys.json";
-    private static readonly string _appName = "Cats Sheetposter";
-    private static readonly string _credPath = "token.json";
-    private static readonly string[] _scopes = { SheetsService.Scope.Spreadsheets, SheetsService.Scope.Drive };
-
     public static Sheet Create(int width, int height)
     {
         var rowData = new RowData[height];
@@ -77,30 +68,6 @@ public static partial class SheetExtension
 
     public static string MakeHyperLink(string link, string? text = default) =>
         $"=ГИПЕРССЫЛКА(\"{link}\";\"{text ?? link}\")";
-
-    public static async Task<Spreadsheet> PostToGoogleDocs(string name, params Sheet[] sheets)
-    {
-        using var stream = File.OpenRead(_appKeysPath);
-
-        using var service = new SheetsService(new BaseClientService.Initializer()
-        {
-            HttpClientInitializer = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                GoogleClientSecrets.FromStream(stream).Secrets,
-                _scopes,
-                "user",
-                CancellationToken.None,
-                new FileDataStore(_credPath, true)),
-            ApplicationName = _appName,
-        });
-
-        Spreadsheet spreadsheet = new()
-        {
-            Properties = new SpreadsheetProperties() { Title = name },
-            Sheets = sheets,
-        };
-
-        return await service.Spreadsheets.Create(spreadsheet).ExecuteAsync();
-    }
 
     #region GettersSetters
 

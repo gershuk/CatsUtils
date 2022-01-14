@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Cats.Utils.Sheetposter/appKeys.json
+/Cats.Utils.Sheetposter/serviceAppKeys.json
+/Cats.Utils.Sheetposter/clientAppKeys.json
