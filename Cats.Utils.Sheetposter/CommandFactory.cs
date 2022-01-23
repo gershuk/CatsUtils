@@ -1,4 +1,6 @@
-﻿using System.CommandLine;
+﻿using Cats.Utils.Api;
+
+using System.CommandLine;
 using System.CommandLine.NamingConventionBinder;
 
 using static Cats.Utils.Sheetposter.Extension.SheetExtension;
@@ -65,6 +67,22 @@ public static class CommandFactory
             {
                 Console.WriteLine("No files found.");
             }
+        });
+
+        return command;
+    }
+
+    public static Command MakeLoginToCatsCommand()
+    {
+        Command command = new("loginToCats", "Login to cats")
+        {
+            new Option<string>(new[] { "-l", "--login" }, "Cats user login") { IsRequired = true },
+            new Option<string>(new[] { "-p", "--password" }, "Cats user password") { IsRequired = true },
+        };
+        command.Handler = CommandHandler.Create<string, string>(async (login, password) =>
+        {
+            using ApiCaller apiCaller = new();
+            Console.WriteLine($"sid={(await apiCaller.Login(login, password) ?? throw new NullReferenceException())["sid"]}");
         });
 
         return command;

@@ -17,6 +17,7 @@ namespace Cats.Utils.Sheetposter
                 MakeTrashFileCommand,
                 MakeUntrashFileCommand,
                 MakeExportFildCommand,
+                MakeLoginToCatsCommand,
             };
 
             foreach (var commandMaker in commandMakerList)
